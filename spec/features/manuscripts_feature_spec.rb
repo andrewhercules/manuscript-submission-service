@@ -54,4 +54,20 @@ feature 'manuscripts' do
 
   end
 
+  context 'editing a manuscript' do
+
+    let! (:my_manuscript) {Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')}
+
+    scenario do
+      visit '/manuscripts'
+      click_link 'Academic manuscript title for a journal article'
+      click_link 'Edit Manuscript Details'
+      fill_in 'Author', with: 'New Article Author'
+      click_button 'Update Manuscript'
+      expect(page).to have_content 'New Article Author'
+      expect(current_path).to eq '/manuscripts'
+    end
+    
+  end
+
 end

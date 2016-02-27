@@ -17,6 +17,15 @@ class ManuscriptsController < ApplicationController
     @manuscript = Manuscript.find(params[:id])
   end
 
+  def edit
+    @manuscript = Manuscript.find(params[:id])
+  end
+
+  def update
+    @manuscript = Manuscript.find(params[:id])
+    @manuscript.update(manuscript_params)
+    redirect_to '/manuscripts'
+  end
 
 
 # Utility method to explicitly state params accepted by controller
