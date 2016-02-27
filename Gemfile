@@ -46,4 +46,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
 
+  # Guard for Rspec to automatically run tests when files are modified
+  gem 'guard-rspec', require: false
+
 end
