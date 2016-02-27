@@ -27,6 +27,7 @@
 guard :rspec, cmd: "bundle exec rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
+  clearing :on
 
   watch('spec/spec_helper.rb') { "spec" }
   watch('config/routes.rb') { "spec/routing" }
