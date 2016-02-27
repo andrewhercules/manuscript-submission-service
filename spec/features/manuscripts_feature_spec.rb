@@ -41,4 +41,17 @@ feature 'manuscripts' do
 
   end
 
+  context 'viewing a manuscript' do
+
+    let! (:my_manuscript) {Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')}
+
+    scenario 'user would like to view a manuscript' do
+      visit '/manuscripts'
+      click_link 'Academic manuscript title for a journal article'
+      expect(page).to have_content 'Academic manuscript title for a journal article'
+      expect(current_path).to eq "/manuscripts/#{my_manuscript.id}"
+    end
+
+  end
+
 end

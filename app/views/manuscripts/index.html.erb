@@ -1,6 +1,6 @@
 <% if @manuscripts.any? %>
   <% @manuscripts.each do |manuscript| %>
-    <h2><%= manuscript.title %></h2>
+    <h2><%= link_to manuscript.title, manuscript_path(manuscript) %></h2>
     <p><%= manuscript.author %></p>
     <p><%= manuscript.journal %></p>
   <% end %>

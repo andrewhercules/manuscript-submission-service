@@ -13,6 +13,11 @@ class ManuscriptsController < ApplicationController
     redirect_to '/manuscripts'
   end
 
+  def show
+    @manuscript = Manuscript.find(params[:id])
+  end
+
+
 
 # Utility method to explicitly state params accepted by controller
 
