@@ -1,4 +1,11 @@
-No manuscripts added yet
-<br />
-<br />
+<% if @manuscripts.any? %>
+  <% @manuscripts.each do |manuscript| %>
+    <h2><%= manuscript.title %></h2>
+    <p><%= manuscript.author %></p>
+    <p><%= manuscript.journal %></p>
+  <% end %>
+<% else %>
+  <p>No manuscripts added yet</p>
+<% end %>
+
 <a href="#">Add a manuscript</a>

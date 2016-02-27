@@ -12,4 +12,18 @@ feature 'manuscripts' do
 
   end
 
+  context 'manuscripts have been added' do
+
+    before do
+      Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')
+    end
+
+    scenario 'manuscripts have been added' do
+      visit '/manuscripts'
+      expect(page).to have_content('Academic manuscript title for a journal article')
+      expect(page).not_to have_content('No manuscripts added yet')
+    end
+
+  end
+
 end
