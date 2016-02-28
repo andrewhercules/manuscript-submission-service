@@ -5,3 +5,5 @@
 <%= link_to "Edit Manuscript Details", edit_manuscript_path(@manuscript) %>
 
 <%= link_to "Delete Manuscript", manuscript_path(@manuscript), method: :delete %>
+
+<%= link_to "Approve Manuscript", new_manuscript_approval_path(@manuscript) %>

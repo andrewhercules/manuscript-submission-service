@@ -3,6 +3,18 @@
     <h2><%= link_to manuscript.title, manuscript_path(manuscript) %></h2>
     <p><%= manuscript.author %></p>
     <p><%= manuscript.journal %></p>
+    <h3>Approvals</h3>
+    <% if manuscript.approvals.any? %>
+      <ul>
+        <% manuscript.approvals.each do |approval| %>
+          <li>
+            <p>Approved: <%= approval.approved %></p>
+            <p><%= approval.comments %></p>
+          </li>
+        <% end %>
+      <% else %>
+        <p>No approvals are on file yet.</p>
+      <% end %>
   <% end %>
 <% else %>
   <p>No manuscripts added yet</p>

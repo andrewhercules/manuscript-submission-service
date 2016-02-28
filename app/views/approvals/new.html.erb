@@ -1,0 +1,10 @@
+<%= form_for [@manuscript, @approval] do |f| %>
+  <%= f.label :approved %>
+  <%= f.radio_button(:approved, 'true') %>
+  <%= f.label(:approved_true, 'Yes') %>
+  <%= f.radio_button(:approved, 'false') %>
+  <%= f.label(:approved_false, 'No') %>
+  <%= f.label :comments %>
+  <%= f.text_area :comments %>
+  <%= f.submit 'Submit Approval' %>
+<% end %>
