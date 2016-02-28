@@ -52,4 +52,7 @@ group :development, :test do
   # Guard for Rspec to automatically run tests when files are modified
   gem 'guard-rspec', require: false
 
+  #Shoulda to help test association
+  gem 'shoulda'
+  
 end
