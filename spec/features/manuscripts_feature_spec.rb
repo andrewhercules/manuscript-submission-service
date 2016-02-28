@@ -58,7 +58,7 @@ feature 'manuscripts' do
 
     let! (:my_manuscript) {Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')}
 
-    scenario do
+    scenario 'user wants to edit manuscript details' do
       visit '/manuscripts'
       click_link 'Academic manuscript title for a journal article'
       click_link 'Edit Manuscript Details'
@@ -67,7 +67,21 @@ feature 'manuscripts' do
       expect(page).to have_content 'New Article Author'
       expect(current_path).to eq '/manuscripts'
     end
-    
+
+  end
+
+  context 'deleting a manuscript' do
+
+    let! (:my_manuscript) {Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')}
+
+    scenario 'user wants to remove a manuscript' do
+      visit '/manuscripts'
+      click_link 'Academic manuscript title for a journal article'
+      click_link 'Delete Manuscript'
+      expect(page).not_to have_content 'Academic manuscript title for a journal article'
+      expect(page).to have_content 'Manuscript successfully deleted'
+    end
+
   end
 
 end

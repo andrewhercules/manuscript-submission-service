@@ -27,6 +27,13 @@ class ManuscriptsController < ApplicationController
     redirect_to '/manuscripts'
   end
 
+  def destroy
+    @manuscript = Manuscript.find(params[:id])
+    @manuscript.destroy
+    flash[:notice] = 'Manuscript successfully deleted'
+    redirect_to '/manuscripts'
+  end
+
 
 # Utility method to explicitly state params accepted by controller
 

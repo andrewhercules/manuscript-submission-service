@@ -3,3 +3,5 @@
 <p><%= @manuscript.journal %></p>
 
 <%= link_to "Edit Manuscript Details", edit_manuscript_path(@manuscript) %>
+
+<%= link_to "Delete Manuscript", manuscript_path(@manuscript), method: :delete %>
