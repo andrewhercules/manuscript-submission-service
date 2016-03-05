@@ -1,9 +1,10 @@
-<%= form_for @manuscript do |f| %>
+<%= form_for @manuscript, html: {multipart: true} do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :author %>
   <%= f.text_field :author %>
   <%= f.label :journal %>
   <%= f.text_field :journal %>
+  <%= f.file_field :document %>
   <%= f.submit 'Submit Manuscript' %>
 <% end%>

@@ -4,6 +4,10 @@
     <p><%= manuscript.author %></p>
     <p><%= manuscript.journal %></p>
     <p>User ID: <%= manuscript.user_id %></p>
+
+    <!-- <%= button_to "Download", manuscript.document.url %> -->
+    <%= link_to "Download", manuscript.document.url %>
+
     <h3>Approvals</h3>
     <% if manuscript.approvals.any? %>
       <ul>

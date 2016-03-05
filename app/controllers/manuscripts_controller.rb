@@ -43,7 +43,7 @@ class ManuscriptsController < ApplicationController
 # Utility method to explicitly state params accepted by controller
 
   def manuscript_params
-    params.require(:manuscript).permit(:title, :author, :journal)
+    params.require(:manuscript).permit(:title, :author, :journal, :document)
   end
 
 end
