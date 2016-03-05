@@ -35,6 +35,9 @@ gem 'arel', '6.0.0.beta2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Adding Devise for user authentication
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -54,5 +57,5 @@ group :development, :test do
 
   #Shoulda to help test association
   gem 'shoulda'
-  
+
 end
