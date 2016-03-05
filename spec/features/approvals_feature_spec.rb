@@ -6,6 +6,15 @@ feature 'approvals' do
     Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')
   end
 
+  before do
+    visit '/'
+    click_link 'Sign up'
+    fill_in 'Email', with: 'user@email.com'
+    fill_in 'Password', with: 'abcd1234'
+    fill_in 'Password Confirmation', with: 'abcd1234'
+    click_button 'Sign up'
+  end
+
   scenario 'allows user to approve a manuscript' do
     visit '/manuscripts'
     click_link 'Academic manuscript title for a journal article'

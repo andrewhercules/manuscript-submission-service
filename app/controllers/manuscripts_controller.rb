@@ -1,5 +1,7 @@
 class ManuscriptsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @manuscripts = Manuscript.all
   end

@@ -2,6 +2,15 @@ require 'rails_helper'
 
 feature 'manuscripts' do
 
+  before do
+    visit '/'
+    click_link 'Sign up'
+    fill_in 'Email', with: 'user@email.com'
+    fill_in 'Password', with: 'abcd1234'
+    fill_in 'Password Confirmation', with: 'abcd1234'
+    click_button 'Sign up'
+  end
+  
   context 'no manuscripts have been added' do
 
     scenario 'should display a prompt to add a manuscript' do
