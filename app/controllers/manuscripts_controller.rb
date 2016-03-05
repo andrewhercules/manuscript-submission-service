@@ -11,8 +11,11 @@ class ManuscriptsController < ApplicationController
   end
 
   def create
-    Manuscript.create(manuscript_params)
-    redirect_to '/manuscripts'
+    @manuscript = Manuscript.new(manuscript_params)
+    @manuscript.user_id = current_user.id
+    @manuscript.save
+    flash[:notice] = 'Manuscript successfully saved!'
+    redirect_to manuscripts_path
   end
 
   def show

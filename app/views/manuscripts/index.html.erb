@@ -3,6 +3,7 @@
     <h2><%= link_to manuscript.title, manuscript_path(manuscript) %></h2>
     <p><%= manuscript.author %></p>
     <p><%= manuscript.journal %></p>
+    <p>User ID: <%= manuscript.user_id %></p>
     <h3>Approvals</h3>
     <% if manuscript.approvals.any? %>
       <ul>
