@@ -3,7 +3,7 @@ class ManuscriptsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @manuscripts = Manuscript.all
+    @manuscripts = Manuscript.where(:user_id => current_user.id)
   end
 
   def new
@@ -19,11 +19,15 @@ class ManuscriptsController < ApplicationController
   end
 
   def show
-    @manuscript = Manuscript.find(params[:id])
+    @manuscript = current_user.manuscripts.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    redirect_to manuscripts_path, :flash => { :notice => 'Unfortunately, you cannot access this manuscript!' }
   end
 
   def edit
-    @manuscript = Manuscript.find(params[:id])
+    @manuscript = current_user.manuscripts.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    redirect_to manuscripts_path, :flash => { :notice => 'Unfortunately, you cannot edit this manuscript!' }
   end
 
   def update
