@@ -6,4 +6,6 @@
 
 <%= link_to "Delete Manuscript", manuscript_path(@manuscript), method: :delete %>
 
-<%= link_to "Approve Manuscript", new_manuscript_approval_path(@manuscript) %>
+<% if can? :manage, @approval %>
+  <%= link_to "Approve Manuscript", new_manuscript_approval_path(@manuscript) %>
+<% end %>

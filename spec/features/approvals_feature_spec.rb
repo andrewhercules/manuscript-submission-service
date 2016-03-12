@@ -1,30 +1,17 @@
 require 'rails_helper'
+require_relative 'helpers/common_feature_spec_methods_helper'
+
+include CommonFeatureSpecMethodsHelper
 
 feature 'approvals' do
 
-  before do
-    Manuscript.create(title: 'Academic manuscript title for a journal article', author: 'Author Name', journal: 'Journal of Academic Studies')
-  end
-
-  before do
-    visit '/'
-    click_link 'Sign up'
-    fill_in 'Email', with: 'user@email.com'
-    fill_in 'Password', with: 'abcd1234'
-    fill_in 'Password Confirmation', with: 'abcd1234'
-    click_button 'Sign up'
-  end
-
-  scenario 'allows user to approve a manuscript' do
+  scenario 'does not allow regular user to approve a manuscript' do
+    sign_up_user('test@email.com')
+    sign_in_user('test@email.com')
     visit '/manuscripts'
-    click_link 'Academic manuscript title for a journal article'
-    click_link 'Approve Manuscript'
-    choose 'approval_approved_true'
-    fill_in 'Comments', with: 'Approved for publication'
-    click_button 'Submit Approval'
-    expect(current_path).to eq '/manuscripts'
-    expect(page).to have_content('Approved for publication')
-    expect(page).to have_content('Approved: true')
+    submit_manuscript('Assessing the 2015 British General Election', 'Lead Author' )
+    click_link 'Assessing the 2015 British General Election'
+    expect(page).not_to have_content('Approve Manuscript')
   end
 
 end
