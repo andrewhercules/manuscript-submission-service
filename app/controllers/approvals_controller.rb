@@ -1,16 +1,21 @@
 class ApprovalsController < ApplicationController
 
-  load_and_authorize_resource param_method: :approval_params
-
   def new
     @manuscript = Manuscript.find(params[:manuscript_id])
     @approval = Approval.new
   end
 
   def create
+    @approval = Approval.new
     @manuscript = Manuscript.find(params[:manuscript_id])
-    @manuscript.approvals.create(approval_params)
-    redirect_to manuscripts_path
+    if @approval.save
+      @manuscript.approvals.create(approval_params)
+      @manuscript.update(vpr_approval: true)
+      redirect_to manuscripts_path
+    else
+      flash[:notice] = "Error! Something went wrong!"
+      redirect_to manuscripts_path
+    end
   end
 
   # Utility method to explicitly state params accepted by controller

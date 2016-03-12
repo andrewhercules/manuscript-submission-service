@@ -20,7 +20,7 @@ class ManuscriptsController < ApplicationController
   end
 
   def show
-    @manuscript = current_user.manuscripts.find(params[:id])
+    @manuscript = Manuscript.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to manuscripts_path, :flash => { :notice => 'Unfortunately, you cannot access this manuscript!' }
   end

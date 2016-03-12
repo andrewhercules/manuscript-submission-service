@@ -23,4 +23,19 @@ feature 'approvals' do
     expect(page).to have_content('Sample title for academic article')
   end
 
+  scenario 'allows the VP Research Admin to approve a manuscript' do
+    create_test_manuscript
+    sign_up_vpr_user('vpradmin@email.com')
+    sign_in_user('vpradmin@email.com')
+    visit '/manuscripts'
+    click_link 'Sample title for academic article'
+    expect(page).to have_content('Approve Manuscript')
+    click_link 'Approve Manuscript'
+    choose 'approval_approved_true'
+    fill_in 'Comments', with: 'Approved for publication'
+    click_button 'Submit Approval'
+    expect(current_path).to eq '/manuscripts'
+    expect(page).not_to have_content('Sample title for academic article')
+  end
+
 end
