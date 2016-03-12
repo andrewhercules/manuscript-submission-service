@@ -1,5 +1,7 @@
 class ApprovalsController < ApplicationController
 
+  load_and_authorize_resource param_method: :approval_params
+
   def new
     @manuscript = Manuscript.find(params[:manuscript_id])
     @approval = Approval.new

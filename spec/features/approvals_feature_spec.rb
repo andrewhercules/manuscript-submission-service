@@ -14,4 +14,13 @@ feature 'approvals' do
     expect(page).not_to have_content('Approve Manuscript')
   end
 
+  scenario 'allows the VP Research Admin to see manuscripts that need approval' do
+    create_test_manuscript
+    sign_up_vpr_user('vpradmin@email.com')
+    sign_in_user('vpradmin@email.com')
+    visit '/manuscripts'
+    expect(page).to have_content('Manuscripts Awaiting Approval')
+    expect(page).to have_content('Sample title for academic article')
+  end
+
 end

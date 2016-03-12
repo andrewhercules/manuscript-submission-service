@@ -3,7 +3,8 @@ class ManuscriptsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @manuscripts = Manuscript.where(:user_id => current_user.id)
+    @my_manuscripts = Manuscript.where(:user_id => current_user.id)
+    @manuscripts_for_approval = Manuscript.where(:vpr_approval => false)
   end
 
   def new
