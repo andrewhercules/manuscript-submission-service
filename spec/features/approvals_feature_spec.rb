@@ -89,4 +89,24 @@ feature 'approvals' do
     expect(page).not_to have_content('Sample title for academic article')
   end
 
+  scenario 'allows a regular user to see if a manuscript has been approved by the VP Research Admin user' do
+    sign_up_user('test@email.com')
+    sign_in_user('test@email.com')
+    visit '/manuscripts'
+    submit_manuscript('Assessing the 2015 British General Election', 'Lead Author')
+    sign_out_user
+    sign_up_vpr_user('vpradmin@email.com')
+    sign_in_user('vpradmin@email.com')
+    visit '/manuscripts'
+    click_link 'Assessing the 2015 British General Election'
+    click_link 'Approve Manuscript'
+    choose 'approval_approved_true'
+    fill_in 'Comments', with: 'Approved for publication'
+    click_button 'Submit Approval'
+    sign_out_user
+    sign_in_user('test@email.com')
+    visit '/manuscripts'
+    expect(page).to have_content 'VP Research Approval: Yes'
+  end
+
 end

@@ -33,4 +33,9 @@ module CommonFeatureSpecMethodsHelper
     User.create(email: email, password: '12345678', password_confirmation: '12345678', kti_admin: true)
   end
 
+  def sign_out_user
+    visit '/'
+    click_link 'Sign out'
+  end
+
 end
