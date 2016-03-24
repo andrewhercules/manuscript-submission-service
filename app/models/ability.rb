@@ -7,7 +7,7 @@ class Ability
       can :manage, :all
       can :read, :all
     else
-      can :read, :all
+      can :read, :Manuscript
     end
   end
 

@@ -1,20 +1,25 @@
 class ApprovalsController < ApplicationController
 
+  include ApprovalsHelper
+
+  before_action :authenticate_user!
+
   def new
-    @manuscript = Manuscript.find(params[:manuscript_id])
-    @approval = Approval.new
+    if current_user.vpr_admin? || current_user.kti_admin?
+      @manuscript = Manuscript.find(params[:manuscript_id])
+      @approval = Approval.new
+    else
+      redirect_to manuscripts_path, :flash => { :notice => 'Error! You do not have the correct administrative rights to issue an approval!' }
+    end
   end
 
   def create
     @approval = Approval.new
     @manuscript = Manuscript.find(params[:manuscript_id])
     if @approval.save
-      @manuscript.approvals.create(approval_params)
-      @manuscript.update(vpr_approval: true)
-      redirect_to manuscripts_path
+      check_admin_type_and_save_approval
     else
-      flash[:notice] = "Error! Something went wrong!"
-      redirect_to manuscripts_path
+      redirect_to manuscripts_path, :flash => { :notice => 'There was an error!' }
     end
   end
 

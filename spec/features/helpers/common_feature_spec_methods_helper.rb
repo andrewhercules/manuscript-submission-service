@@ -22,11 +22,15 @@ module CommonFeatureSpecMethodsHelper
   end
 
   def create_test_manuscript
-    Manuscript.create(title: 'Sample title for academic article', author: 'Author Name', journal: 'Journal of Academic Studies', document_file_name: 'Sample_Manuscript.pdf', document_content_type: 'application/pdf', vpr_approval: false)
+    Manuscript.create(title: 'Sample title for academic article', author: 'Author Name', journal: 'Journal of Academic Studies', document_file_name: 'Sample_Manuscript.pdf', document_content_type: 'application/pdf', vpr_approval: false, kti_approval: false)
   end
 
   def sign_up_vpr_user(email)
     User.create(email: email, password: '12345678', password_confirmation: '12345678', vpr_admin: true)
+  end
+
+  def sign_up_kti_user(email)
+    User.create(email: email, password: '12345678', password_confirmation: '12345678', kti_admin: true)
   end
 
 end

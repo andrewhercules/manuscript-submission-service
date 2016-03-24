@@ -4,7 +4,8 @@ class ManuscriptsController < ApplicationController
 
   def index
     @my_manuscripts = Manuscript.where(:user_id => current_user.id)
-    @manuscripts_for_approval = Manuscript.where(:vpr_approval => false)
+    @manuscripts_for_vpr_approval = Manuscript.where('vpr_approval = ?', false)
+    @manuscripts_for_kti_approval = Manuscript.where('kti_approval = ?', false)
   end
 
   def new

@@ -29,14 +29,26 @@
 
 <% if can? :manage, @approval %>
 
-  <h2>Manuscripts Awaiting Approval</h2>
-
-  <% if @manuscripts_for_approval.any? %>
-    <% @manuscripts_for_approval.each do |manuscript| %>
-      <p><%= link_to manuscript.title, manuscript_path(manuscript) %></p>
+  <% if current_user.vpr_admin? %>
+    <% if @manuscripts_for_vpr_approval.any? %>
+      <h2>Manuscripts Awaiting VP Research Approval</h2>
+      <% @manuscripts_for_vpr_approval.each do |manuscript| %>
+        <p><%= link_to manuscript.title, manuscript_path(manuscript) %></p>
+    <% end %>
+    <% else %>
+      <p>There are no manuscripts for approval</p>
+    <% end %>
   <% end %>
-  <% else %>
-    <p>There are no manuscripts for approval</p>
+
+  <% if current_user.kti_admin? %>
+    <% if @manuscripts_for_kti_approval.any? %>
+      <h2>Manuscripts Awaiting KTI Approval</h2>
+      <% @manuscripts_for_kti_approval.each do |manuscript| %>
+        <p><%= link_to manuscript.title, manuscript_path(manuscript) %></p>
+    <% end %>
+    <% else %>
+      <p>There are no manuscripts for approval</p>
+    <% end %>
   <% end %>
 
 <% end %>
