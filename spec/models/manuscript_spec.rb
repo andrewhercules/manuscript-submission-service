@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Manuscript, :type => :model do
+RSpec.describe Manuscript.new, :type => :model do
 
   it { is_expected.to have_many :approvals }
 
@@ -14,7 +14,10 @@ RSpec.describe Manuscript, :type => :model do
     allowing('application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document').
     rejecting('text/plain', 'text/xml') }
 
-  it { should validate_attachment_size(:document).
-                less_than(10.megabytes) }
+  it { should validate_attachment_size(:document).less_than(10.megabytes) }
+
+  it {should respond_to(:approval_number) }
+
+  it { should have_attributes(:approval_number => "N/A") }
 
 end
