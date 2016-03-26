@@ -6,6 +6,12 @@
     <p>User ID: <%= manuscript.user_id %></p>
     <p>VP Research Approval: <%= transform_boolean_value_to_yes_or_no(manuscript.vpr_approval) %></p>
     <p>KTI Approval: <%= transform_boolean_value_to_yes_or_no(manuscript.kti_approval) %></p>
+    <p>Manuscript Approval Number:
+      <% if manuscript.approval_number == "N/A" %>
+        <%= manuscript.approval_number %>
+      <% else %>
+        <span class="manuscript-approval-number"><%= manuscript.approval_number %></span></p>
+      <% end %>
     <!-- <%= button_to "Download", manuscript.document.url %> -->
     <%= link_to "Download", manuscript.document.url %>
 

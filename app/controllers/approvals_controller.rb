@@ -18,6 +18,7 @@ class ApprovalsController < ApplicationController
     @manuscript = Manuscript.find(params[:manuscript_id])
     if @approval.save
       check_admin_type_and_save_approval
+      check_approvals_and_generate_approval_number
     else
       redirect_to manuscripts_path, :flash => { :notice => 'There was an error!' }
     end
