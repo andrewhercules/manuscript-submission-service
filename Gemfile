@@ -44,6 +44,9 @@ gem 'paperclip'
 #Adding CanCanCan for user authorisation
 gem 'cancancan', '~> 1.10'
 
+#Adding Figaro for app security configuration
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
