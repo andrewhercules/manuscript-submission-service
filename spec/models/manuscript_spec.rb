@@ -21,7 +21,7 @@ RSpec.describe Manuscript.new, :type => :model do
   it { should have_attributes(:approval_number => "N/A") }
 
   it 'sends an email' do
-    expect { Manuscript.new.send_manuscript_for_approval }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    expect { Manuscript.new.send_manuscript_for_approval(['test1@email.com']) }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 
 end

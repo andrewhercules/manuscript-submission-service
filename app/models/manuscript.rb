@@ -11,8 +11,8 @@ class Manuscript < ActiveRecord::Base
     :size => { less_than: 10.megabytes },
     :default_url => "/documents/missing_document.pdf"
 
-    def send_manuscript_for_approval
-      ManuscriptMailer.new_manuscript_email(self).deliver_now
+    def send_manuscript_for_approval(list_of_email_addresses)
+      list_of_email_addresses.each { |email_address| ManuscriptMailer.new_manuscript_email(self, email_address).deliver_now   }
     end
 
 end
