@@ -15,9 +15,13 @@ class ManuscriptsController < ApplicationController
   def create
     @manuscript = Manuscript.new(manuscript_params)
     @manuscript.user_id = current_user.id
-    @manuscript.save
-    flash[:notice] = 'Manuscript successfully saved!'
-    redirect_to manuscripts_path
+    if @manuscript.save
+      @manuscript.send_manuscript_for_approval
+      flash[:notice] = 'Manuscript successfully saved!'
+      redirect_to manuscripts_path
+    else
+      flash[:notice] = 'Error! The manuscript was not created. Please try again!'
+    end
   end
 
   def show
